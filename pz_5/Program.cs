@@ -1,4 +1,6 @@
-﻿namespace pz_5
+﻿using System.Globalization;
+
+namespace pz_5
 {
     internal class Program
     {
@@ -20,13 +22,17 @@
             //Console.WriteLine(result);
 
             // Задание 3
-            //int n = 3;
-            //int m = 6;
-            //
-            //for (int i = 0; i < m; i++)
-            //{
-            //    Console.WriteLine(String.Concat(Enumerable.Repeat('#', n)));
-            //}
+            int n = 3;
+            int m = 6;
+            
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < n ; j++)
+                {
+                    Console.Write('#');
+                }
+                Console.WriteLine();
+            }
 
             // Задание 4
             //int value = 5;
@@ -39,18 +45,18 @@
             //}
 
             // задание 5
-            int i = 2;
-            int j = 40;
-            int difference = 18;
+            //int i = 2;
+            //int j = 40;
+            //int difference = 18;
 
-            for (; ;i++, j-- )
-            {
-                if ( j - i == difference)
-                {
-                    Console.WriteLine($"i = {i} \nj = {j}");
-                    break;  
-                }
-            }
+            //for (; ;i++, j-- )
+            //{
+            //    if ( j - i == difference)
+            //    {
+            //        Console.WriteLine($"i = {i} \nj = {j}");
+            //        break;  
+            //    }
+            //}
         }
     }
 }
