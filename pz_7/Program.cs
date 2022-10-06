@@ -23,9 +23,39 @@
                 arr[0] = temp;
             }
             Console.WriteLine("Произошел сдвиг на 4 элемента вправо");
-            foreach (int i in arr) {
+            foreach (int i in arr)
+            {
                 Console.Write(i + " ");
             }
+
+            // Дополнительное задание: поиск повторяющихся элементов и вывод их кол-ва
+
+            //char[] arr = new char[30];
+            //Random rnd = new Random();
+            //for (int i = 0; i < arr.Length; i++)
+            //{
+            //    arr[i] = Convert.ToChar(rnd.Next('a', 'a' + 30));
+            //}
+            //Array.Sort(arr);
+            //char firstChar, secondChar;
+            //int count = 1;
+            //for (int i = 0; i < arr.Length-1; i++)
+            //{
+            //        firstChar = arr[i];
+            //        secondChar = arr[i+1];
+            //        if (firstChar == secondChar)
+            //        {
+            //            count++;
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine($"Символ {firstChar} повторяется {count} раз");
+            //            count = 1;
+            //        }
+            //}
+            //foreach (char i in arr) {
+            //    Console.Write(i + " ");
+            //}
         }
     }
 }
