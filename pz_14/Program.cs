@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 namespace pz_14
 {
@@ -26,20 +27,34 @@ namespace pz_14
                 return q * GeomProgress(b1, q, n-1); 
             }
         }
-        static int AllNumbers(int A, int B)
+        static string AllNumbers(int A, int B)
         {
-            StringBuilder result = new StringBuilder("1");
             if (A == B)
             {
-                return 1;
+                return Convert.ToString(A);
             }
-            else if (A < B)
+            else if (A > B)
             {
-                return AllNumbers(A + 1, B) + 1;
+                return A + " " + AllNumbers(A - 1, B);
+            }
+            else {
+                return A + " " + AllNumbers(A + 1, B);
+            }
+        }
+        static string ReverseNums(int num)
+        {
+            string result = "";
+            if (num < 10)
+            {
+                return Convert.ToString(num);
             }
             else
             {
-                return AllNumbers(A - 1, B) - 1;
+                int value = num % 10;
+                int nextValue = num / 10;
+                result += Convert.ToString(value);
+                ReverseNums(nextValue);
+                return result;
             }
         }
         static void Main(string[] args)
@@ -49,7 +64,7 @@ namespace pz_14
             Console.WriteLine("Задача 2");
             Console.WriteLine(GeomProgress(5, -0.1, 5));
             Console.WriteLine("Задача 3");
-            Console.WriteLine(AllNumbers(5, 3));
+            Console.WriteLine(AllNumbers(-2, 5));
         }
     }
 }
