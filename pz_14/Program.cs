@@ -41,21 +41,16 @@ namespace pz_14
                 return A + " " + AllNumbers(A + 1, B);
             }
         }
-        static string ReverseNums(int num)
+        static void ReverseNums(int num)
         {
-            string result = "";
-            if (num < 10)
+            int newNum = num % 10;
+            Console.Write(newNum);
+            num /= 10;
+            if (num > 0)
             {
-                return Convert.ToString(num);
+                ReverseNums(num);
             }
-            else
-            {
-                int value = num % 10;
-                int nextValue = num / 10;
-                result += Convert.ToString(value);
-                ReverseNums(nextValue);
-                return result;
-            }
+
         }
         static void Main(string[] args)
         {
@@ -65,6 +60,8 @@ namespace pz_14
             Console.WriteLine(GeomProgress(5, -0.1, 5));
             Console.WriteLine("Задача 3");
             Console.WriteLine(AllNumbers(-2, 5));
+            Console.WriteLine("Задача 4");
+            ReverseNums(123);
         }
     }
 }
