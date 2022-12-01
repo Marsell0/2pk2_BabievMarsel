@@ -6,12 +6,29 @@ namespace pz17
 {
     internal class Program
     {
-        int HP = 30;
         const int height = 20;
         const int width = 20;
-        int power = 5;
+
+        string path_for_save = @"D:\game_save.txt";
+
+        bool gameFlag = true;
+        bool buffFlag = false;
+
+        int playerHP = 30;
+        int enemyHP = 15;
+
+        int player_punch_force = 5;
+        int enemy_punch_force = 5;
+
         int step_counter = 0;
+        int buff_counter = 5;
+        int enemy_counter = 10;
+
         char[,] map = new char[height, width];
+        int[] player_position = new int[2] { 9, 9 };
+        string[] enemies = new string[10];
+        string[] medicine = new string[5];
+        string[] buffs = new string[3];
 
         public string[] CreateCoords(string[] array)
         {
@@ -22,6 +39,7 @@ namespace pz17
                 int second = rnd.Next(0, 20);
                 if (first != 9 && second != 9)
                 {
+                    // пользуемся своеобразным костылём для корректной записи координат в массив
                     string[] arr = (Convert.ToString(first) + " " + Convert.ToString(second)).Split();
                     array[i] = String.Join(" ", arr);
                 }
@@ -34,24 +52,83 @@ namespace pz17
                 }
             }
             return array;
-        }
+        } 
 
         public static void Main()
         {//основные вызовы методов
             Program P = new Program();
             P.GenerateMap();
-            
-            //while (P.HP != 0)
-            //{
-            //    P.UpdateMap();
-            //}
+
+            while (P.gameFlag)
+            {
+                if (P.buffFlag)
+                {
+                    P.buff_counter--;
+                }
+
+                if (P.enemy_counter == 0)
+                {
+                    P.gameFlag = false;
+                }
+                if (P.playerHP <= 0)
+                {
+                    P.gameFlag = false;
+                }
+
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                P.Move(key.Key);
+                P.SaveState(key.Key);
+                P.step_counter++;
+                if (P.buff_counter == 0)
+                {
+                    P.player_punch_force = 5;
+                    P.buffFlag = false;
+                    P.buff_counter = 5;
+                }
+                foreach (string i in P.enemies)
+                {
+                    string[] coords_b = i.Split();
+                    if (P.player_position[0] == Convert.ToInt32(coords_b[0])
+                        && P.player_position[1] == Convert.ToInt32(coords_b[1]))
+                    {
+                        P.Fight();
+                    }
+                }
+                foreach (string i in P.medicine)
+                {
+                    string[] coords_b = i.Split();
+                    if (P.player_position[0] == Convert.ToInt32(coords_b[0])
+                        && P.player_position[1] == Convert.ToInt32(coords_b[1]))
+                    {
+                        P.Healing();
+                    }
+                }
+                foreach (string i in P.buffs)
+                {
+                    string[] coords_b = i.Split();
+                    if (P.player_position[0] == Convert.ToInt32(coords_b[0])
+                        && P.player_position[1] == Convert.ToInt32(coords_b[1]))
+                    {
+                        P.Buff();
+                    }
+                }
+                P.UpdateMap();
+            }
+            Console.Clear();
+            if (P.playerHP <= 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Увы, вы проиграли. \n Количество ходов: {P.step_counter}");
+            }
+            else if (P.enemy_counter == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Поздравляем! Вы победили! \n Количество ходов: {P.step_counter}");
+            }
         }
         public void GenerateMap() //генерация карты
         {
             Random rnd = new Random();
-            string[] enemies = new string[10];
-            string[] medicine = new string[5];
-            string[] buffs = new string[3];
 
             // Генерируем карту
             for (int i = 0; i < map.Length / height; i++)
@@ -136,6 +213,7 @@ namespace pz17
         }
         public void UpdateMap()
         {
+            Console.Clear();
             for (int i = 0; i < map.Length / height; i++)
             {
                 for (int j = 0; j < map.Length / width; j++)
@@ -169,22 +247,116 @@ namespace pz17
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine($"Количество ходов: {step_counter}");
+            Console.WriteLine($"Количество врагов: {enemy_counter}");
+            Console.WriteLine($"Здоровье: {playerHP}");
+            Console.WriteLine($"Сила атаки: {player_punch_force}");
+            if (buffFlag)
+            {
+                Console.WriteLine($"До конца усиления: {buff_counter}");
+            }
         }
 
-        public static void Move(ConsoleKeyInfo key)
+        public void Move(System.ConsoleKey direction)
         {//перемещение
+            switch (direction)
+            {
+                case ConsoleKey.UpArrow:
+                    player_position[0] -= 1;
+                    if (player_position[0] < 0)
+                    {
+                        player_position[0] = 0;
+                    }
+                    map[player_position[0] + 1, player_position[1]] = '.';
+                    map[player_position[0], player_position[1]] = 'P';
+                    break;
 
+                case ConsoleKey.DownArrow:
+                    player_position[0] += 1;
+                    if (player_position[0] > 19)
+                    {
+                        player_position[0] = 19;
+                    }
+                    map[player_position[0] - 1, player_position[1]] = '.';
+                    map[player_position[0], player_position[1]] = 'P';
+                    break;
+
+                case ConsoleKey.LeftArrow:
+                    player_position[1] -= 1;
+                    if (player_position[1] < 0)
+                    {
+                        player_position[1] = 0;
+                    }
+                    map[player_position[0], player_position[1] + 1] = '.';
+                    map[player_position[0], player_position[1]] = 'P';
+                    break;
+
+                case ConsoleKey.RightArrow:
+                    player_position[1] += 1;
+                    if (player_position[1] > 19)
+                    {
+                        player_position[1] = 19;
+                    }
+                    map[player_position[0], player_position[1] - 1] = '.';
+                    map[player_position[0], player_position[1]] = 'P';
+                    break;
+            }
         }
-        public static void Fight()
+        public void Fight()
         {//обмен ударами игрока и врага до полной потери здоровья одним из них
+            while (enemyHP > 0)
+            {
+                playerHP -= enemy_punch_force;
+                enemyHP -= player_punch_force;
+            }
+            if (playerHP <= 0)
+            {
+                gameFlag = false;
+            }
+            else 
+            {
+                enemy_counter--;
+            }
+            enemyHP = 15;
         }
-        public static void Healing()
+        public void Healing()
         {// лечение
+            playerHP += 15;
+            if (playerHP > 30)
+            {
+                playerHP = 30;
+            }
         }
-        public static void Buff()
+        public void Buff()
         {//увеличение силы
+            player_punch_force = 10;
+            buffFlag = true;
         }
-        public static void SaveState()//сохра
+        public void SaveState(System.ConsoleKey btn_pressed)//сохра
+        {
+            if (btn_pressed == ConsoleKey.Escape)
+            {
+                using (FileStream file = new FileStream(path_for_save, FileMode.OpenOrCreate))
+                {
+                    using (StreamWriter sr = new StreamWriter(file))
+                    {
+                        for (int i = 0; i < map.Length / height; i++)
+                        {
+                            for (int j = 0; j < map.Length / width; j++)
+                            {
+                                sr.Write(map[i, j]);
+                            }
+                            sr.WriteLine();
+                        }
+                    }
+                    Console.Clear();
+                    Console.WriteLine("Ваша игра успешно сохранена. \n Нажмите любую кнопку, чтобы выйти");
+                    Console.ReadKey();
+                    gameFlag = false;
+                }
+            }
+        }
+        public void LoadState() 
         {
         }
     }
