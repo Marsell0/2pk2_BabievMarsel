@@ -57,8 +57,20 @@ namespace pz17
         public static void Main()
         {//основные вызовы методов
             Program P = new Program();
-            P.GenerateMap();
-
+            if (File.Exists(P.path_for_save))
+            {
+                Console.WriteLine("У вас есть сохранение. Хотите загрузить?(введите цифру) \n 1. Да \n 2. Нет");
+                string answer = Console.ReadLine();
+                if (answer == "1")
+                {
+                    P.LoadState();
+                }
+                else 
+                {
+                    P.GenerateMap();
+                }
+                Console.Clear();
+            }
             while (P.gameFlag)
             {
                 if (P.buffFlag)
@@ -126,6 +138,9 @@ namespace pz17
                 Console.WriteLine($"Поздравляем! Вы победили! \n Количество ходов: {P.step_counter}");
             }
         }
+ 
+
+            
         public void GenerateMap() //генерация карты
         {
             Random rnd = new Random();
@@ -338,15 +353,35 @@ namespace pz17
             {
                 using (FileStream file = new FileStream(path_for_save, FileMode.OpenOrCreate))
                 {
-                    using (StreamWriter sr = new StreamWriter(file))
-                    {
+                    using (StreamWriter sw = new StreamWriter(file))
+                    { 
                         for (int i = 0; i < map.Length / height; i++)
                         {
                             for (int j = 0; j < map.Length / width; j++)
                             {
-                                sr.Write(map[i, j]);
+                                sw.Write(map[i, j]);
                             }
-                            sr.WriteLine();
+                            sw.WriteLine();
+                        }
+                        sw.WriteLine("---");
+                        sw.WriteLine(step_counter);
+                        sw.WriteLine(enemy_counter);
+                        sw.WriteLine(playerHP);
+                        sw.WriteLine(buff_counter);
+                        sw.WriteLine("---");
+                        for (int i = 0; i < enemies.Length; i++)
+                        {
+                            sw.WriteLine(enemies[i]);
+                        }
+                        sw.WriteLine("---");
+                        for (int i = 0; i < medicine.Length; i++)
+                        {
+                            sw.WriteLine(medicine[i]);
+                        }
+                        sw.WriteLine("---");
+                        for (int i = 0; i < buffs.Length; i++)
+                        {
+                            sw.WriteLine(buffs[i]);
                         }
                     }
                     Console.Clear();
@@ -358,6 +393,20 @@ namespace pz17
         }
         public void LoadState() 
         {
+            int count = 20;
+            int width_counter = 0;
+            using (StreamReader sr = new StreamReader(path_for_save))
+            {
+                for (int x = 0; x < height; x++)
+                {
+                    string line = sr.ReadLine();
+                    char[] temp = line.ToCharArray();
+                    for (int y = 0; y < width; y++)
+                    {
+                        map[x, y] = temp[y];
+                    }
+                }
+            }
         }
     }
 }
