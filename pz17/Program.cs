@@ -15,10 +15,10 @@ namespace pz17
         bool buffFlag = false;
 
         int playerHP = 30;
-        int enemyHP = 15;
+        int enemyHP = 10;
 
         int player_punch_force = 5;
-        int enemy_punch_force = 5;
+        int enemy_punch_force = 3;
 
         int step_counter = 0;
         int buff_counter = 5;
@@ -53,7 +53,6 @@ namespace pz17
             }
             return array;
         } 
-
         public static void Main()
         {//основные вызовы методов
             Program P = new Program();
@@ -63,13 +62,18 @@ namespace pz17
                 string answer = Console.ReadLine();
                 if (answer == "1")
                 {
+                    Console.Clear();
                     P.LoadState();
                 }
-                else 
+                else
                 {
+                    Console.Clear();
                     P.GenerateMap();
                 }
-                Console.Clear();
+            }
+            else
+            {
+                P.GenerateMap();
             }
             while (P.gameFlag)
             {
@@ -138,9 +142,6 @@ namespace pz17
                 Console.WriteLine($"Поздравляем! Вы победили! \n Количество ходов: {P.step_counter}");
             }
         }
- 
-
-            
         public void GenerateMap() //генерация карты
         {
             Random rnd = new Random();
@@ -225,6 +226,14 @@ namespace pz17
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine($"Количество ходов: {step_counter}");
+            Console.WriteLine($"Количество врагов: {enemy_counter}");
+            Console.WriteLine($"Здоровье: {playerHP}");
+            Console.WriteLine($"Сила атаки: {player_punch_force}");
+            if (buffFlag)
+            {
+                Console.WriteLine($"До конца усиления: {buff_counter}");
+            }
         }
         public void UpdateMap()
         {
@@ -271,7 +280,6 @@ namespace pz17
                 Console.WriteLine($"До конца усиления: {buff_counter}");
             }
         }
-
         public void Move(System.ConsoleKey direction)
         {//перемещение
             switch (direction)
@@ -336,7 +344,7 @@ namespace pz17
         }
         public void Healing()
         {// лечение
-            playerHP += 15;
+            playerHP = 30;
             if (playerHP > 30)
             {
                 playerHP = 30;
@@ -385,27 +393,47 @@ namespace pz17
                         }
                     }
                     Console.Clear();
-                    Console.WriteLine("Ваша игра успешно сохранена. \n Нажмите любую кнопку, чтобы выйти");
-                    Console.ReadKey();
                     gameFlag = false;
                 }
             }
         }
         public void LoadState() 
         {
-            int count = 20;
-            int width_counter = 0;
             using (StreamReader sr = new StreamReader(path_for_save))
             {
-                for (int x = 0; x < height; x++)
+                Console.Clear();
+                string[] arr = sr.ReadToEnd().Split("---");
+                char[] savedMap = (String.Join(" ", arr[0])).ToCharArray();
+                //for (int i = 0; i < map.Length / height; i++)
+                //{
+                //    for (int j = 0; j < map.Length / width; j++)
+                //    {
+                //        if (i == 9 && j == 9)
+                //        {
+                //            map[i, j] = 'P';
+                //        }
+                //        else
+                //        {
+                //            map[i, j] = '.';
+                //        }
+                //    }
+                //}
+
+                string[] savedPlayerData = arr[1].Split(" ");
+                step_counter = Convert.ToInt32(savedPlayerData[0]);
+                enemy_counter = Convert.ToInt32(savedPlayerData[1]);
+                playerHP = Convert.ToInt32(savedPlayerData[2]);
+
+
+                foreach (string i in savedPlayerData)
                 {
-                    string line = sr.ReadLine();
-                    char[] temp = line.ToCharArray();
-                    for (int y = 0; y < width; y++)
-                    {
-                        map[x, y] = temp[y];
-                    }
+                    Console.WriteLine(i);
                 }
+                Console.WriteLine(savedPlayerData);
+                //for (int i = 0; i < 4; i++) {
+ 
+                //}
+
             }
         }
     }
