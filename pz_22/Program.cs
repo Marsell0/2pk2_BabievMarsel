@@ -1,13 +1,13 @@
-namespace pz_22
+Ôªønamespace pz_22
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Invoice first = new Invoice(1, "‰Ó 21.02.2022", "—˚", 10, 135);
-            Invoice second = new Invoice(2, "‰Ó 21.06.2023", " ÓÎ·‡Ò‡", 23, 240, 20);
-            Invoice third = new Invoice(3, "‰Ó 1.01.2022", "’ÎÂ·", 10, 32, 5);
-            Invoice fourth = new Invoice(4, "‰Ó 24.12.2001", "Ã‡ÒÎÓ", 100, 50, 10);
+            Invoice first = new Invoice(1, "–¥–æ 21.02.2022", "–°—ã—Ä", 10, 135);
+            Invoice second = new Invoice(2, "–¥–æ 21.06.2023", "–ö–æ–ª–±–∞—Å–∞", 23, 240, 20);
+            Invoice third = new Invoice(3, "–¥–æ 1.01.2022", "–•–ª–µ–±", 10, 32, 5);
+            Invoice fourth = new Invoice(4, "–¥–æ 24.12.2001", "–ú–∞—Å–ª–æ", 100, 50, 10);
             first.PrintInfo();
             Console.WriteLine(first.GetFullPrice());
             Console.WriteLine();
