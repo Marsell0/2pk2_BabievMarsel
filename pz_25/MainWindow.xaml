@@ -20,21 +20,21 @@
             <ColumnDefinition/>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="1" Grid.Column="0" Content="1" FontSize="40" ></Button>
-        <Button Grid.Row="1" Grid.Column="1" Content="2" FontSize="40"></Button>
-        <Button Grid.Row="1" Grid.Column="2" Content="3" FontSize="40"></Button>
-        <Button Grid.Row="1" Grid.Column="3" Content="+" FontSize="40"></Button>
-        <Button Grid.Row="2" Grid.Column="0" Content="4" FontSize="40"></Button>
-        <Button Grid.Row="2" Grid.Column="1" Content="5" FontSize="40"></Button>
-        <Button Grid.Row="2" Grid.Column="2" Content="6" FontSize="40"></Button>
-        <Button Grid.Row="2" Grid.Column="3" Content="-" FontSize="40"></Button>
-        <Button Grid.Row="3" Grid.Column="0" Content="7" FontSize="40"></Button>
-        <Button Grid.Row="3" Grid.Column="1" Content="8" FontSize="40"></Button>
-        <Button Grid.Row="3" Grid.Column="2" Content="9" FontSize="40"></Button>
-        <Button Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Content="=" FontSize="40"></Button>
-        <Button Grid.Row="4" Grid.Column="0" Content="/" FontSize="40"></Button>
-        <Button Grid.Row="4" Grid.Column="1" Content="0" FontSize="40"></Button>
-        <Button Grid.Row="4" Grid.Column="2" Content="*" FontSize="40"></Button>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"></TextBlock>
+        <Button x:Name="btn1" Grid.Row="1" Grid.Column="0" Content="1" FontSize="40" Click="btn1_Click" ></Button>
+        <Button x:Name="btn2" Grid.Row="1" Grid.Column="1" Content="2" FontSize="40" Click="btn2_Click"></Button>
+        <Button x:Name="btn3" Grid.Row="1" Grid.Column="2" Content="3" FontSize="40" Click="btn3_Click"></Button>
+        <Button x:Name="btn_plus" Grid.Row="1" Grid.Column="3" Content="+" FontSize="40" Click="btn_plus_Click"></Button>
+        <Button x:Name="btn4" Grid.Row="2" Grid.Column="0" Content="4" FontSize="40" Click="btn4_Click"></Button>
+        <Button x:Name="btn5" Grid.Row="2" Grid.Column="1" Content="5" FontSize="40" Click="btn5_Click"></Button>
+        <Button x:Name="btn6" Grid.Row="2" Grid.Column="2" Content="6" FontSize="40" Click="btn6_Click"></Button>
+        <Button x:Name="btn_minus" Grid.Row="2" Grid.Column="3" Content="-" FontSize="40" Click="btn_minus_Click"></Button>
+        <Button x:Name="btn7" Grid.Row="3" Grid.Column="0" Content="7" FontSize="40" Click="btn7_Click"></Button>
+        <Button x:Name="btn8" Grid.Row="3" Grid.Column="1" Content="8" FontSize="40" Click="btn8_Click"></Button>
+        <Button x:Name="btn9" Grid.Row="3" Grid.Column="2" Content="9" FontSize="40" Click="btn9_Click"></Button>
+        <Button x:Name="btn_result" Grid.Row="3" Grid.Column="3" Grid.RowSpan="3" Content="=" FontSize="40" Click="btn_result_Click"></Button>
+        <Button x:Name="btn_div" Grid.Row="4" Grid.Column="0" Content="/" FontSize="40" Click="btn_div_Click"></Button>
+        <Button x:Name="btn0" Grid.Row="4" Grid.Column="1" Content="0" FontSize="40" Click="btn0_Click"></Button>
+        <Button x:Name="btn_mult" Grid.Row="4" Grid.Column="2" Content="*" FontSize="40" Click="btn_mult_Click"></Button>
+        <TextBlock x:Name="infoTextBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" TextAlignment="Right" FontSize="40"></TextBlock>
     </Grid>
 </Window>
