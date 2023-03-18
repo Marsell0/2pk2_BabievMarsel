@@ -15,7 +15,7 @@
                     <MenuItem Header="Сохранить" ></MenuItem>
                     <MenuItem Header="Удалить" ></MenuItem>
                 </MenuItem>
-                <MenuItem Header="О программе" ></MenuItem>
+                <MenuItem Header="О программе" Click="MenuItem_Click_showModal"></MenuItem>
             </Menu>
             <WrapPanel MinHeight ="20">
                 <Button x:Name = "butItalic" Width="30" Height="30">

@@ -30,5 +30,11 @@ namespace pz_26
             MenuItem menuItem = (MenuItem)sender;
             MessageBox.Show(menuItem.Header.ToString());
         }
+
+        private void MenuItem_Click_showModal(object sender, RoutedEventArgs e)
+        {
+            AboutWindow about = new AboutWindow();
+            about.ShowDialog();
+        }
     }
 }
