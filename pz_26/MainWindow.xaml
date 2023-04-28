@@ -11,26 +11,44 @@
             <Menu MinHeight="20" Background="Gray">
                 <MenuItem Header="Файл" Click="MenuItem_Click">
                     <MenuItem Header="Новый" ></MenuItem>
-                    <MenuItem Header="Открыть" ></MenuItem>
-                    <MenuItem Header="Сохранить" ></MenuItem>
+                    <MenuItem Header="Открыть" Click="openFile" ></MenuItem>
+                    <MenuItem Header="Сохранить" Click="saveFile" ></MenuItem>
                     <MenuItem Header="Удалить" ></MenuItem>
                 </MenuItem>
                 <MenuItem Header="О программе" Click="MenuItem_Click_showModal"></MenuItem>
             </Menu>
             <WrapPanel MinHeight ="20">
-                <Button x:Name = "butItalic" Width="30" Height="30">
+                <Button Click="makeItalic" x:Name = "butItalic" Width="30" Height="30">
                     <Image Source="/src/italic_em_emphasis_format_editor_tool_icon_145968.png" />
                 </Button>
-                <Button x:Name = "butBold" Width="30" Height="30">
+                <Button Click="makeBold" x:Name = "butBold" Width="30" Height="30">
                     <Image Source="/src/bold_format_editor_tool_icon_146015.png" />
                 </Button>
-                <Button x:Name = "butUnderline" Width="30" Height="30">
+                <Button Click="makeUnderline" x:Name = "butUnderline" Width="30" Height="30">
                     <Image Source="/src/underline_format_editor_tool_icon_145920.png" />
                 </Button>
             </WrapPanel>
         </StackPanel>
-        <StatusBar DockPanel.Dock="Bottom" MinHeight ="20" Background="Gray"></StatusBar>
+        <StatusBar DockPanel.Dock="Bottom" MinHeight ="20" Background="Gray">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <TextBlock x:Name="position"></TextBlock>
+            <StatusBarItem Grid.Column="1">
+                <TextBlock x:Name="dateCreation"></TextBlock>
+            </StatusBarItem>            <StatusBarItem Grid.Column="2">
+                <TextBlock x:Name="fileSize"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
         <ListBox  MinWidth = "200" Background="LightGray"></ListBox>
-        <RichTextBox></RichTextBox>
+        <RichTextBox x:Name="richTB" SpellCheck.IsEnabled="True" Language="ru-ru" VerticalScrollBarVisibility="Auto"/>
     </DockPanel>
 </Window>
