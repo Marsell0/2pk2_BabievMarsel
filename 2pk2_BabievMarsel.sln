@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pz_28", "pz_28\pz_28.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentCard", "StudentCard\StudentCard.csproj", "{B2E87CAD-2436-49CC-A2B6-7603F29DF249}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentCardLibrary", "StudentCardLibrary\StudentCardLibrary.csproj", "{153BA474-4157-42AF-B5BC-7269F92A99CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,6 +149,10 @@ Global
 		{B2E87CAD-2436-49CC-A2B6-7603F29DF249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E87CAD-2436-49CC-A2B6-7603F29DF249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2E87CAD-2436-49CC-A2B6-7603F29DF249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{153BA474-4157-42AF-B5BC-7269F92A99CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{153BA474-4157-42AF-B5BC-7269F92A99CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{153BA474-4157-42AF-B5BC-7269F92A99CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{153BA474-4157-42AF-B5BC-7269F92A99CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
