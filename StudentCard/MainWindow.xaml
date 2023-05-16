@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentCard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Система контроля данных студентов" MaxWidth="500" MaxHeight="600"
+        ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
 
+
+        <TextBlock Grid.Row="0" Grid.Column="0"  FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center">Данные о студентах</TextBlock>
+        <ListBox x:Name="Students" Grid.Row="1"></ListBox>
+
+        <Button x:Name="AddBtn" Grid.Row="2" FontSize="30" Width="100" Height="80" Click="AddBtn_Click">Добавить</Button>
     </Grid>
 </Window>

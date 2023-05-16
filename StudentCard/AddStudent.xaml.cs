@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace StudentCard
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для AddStudent.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddStudent : Window
     {
-        public MainWindow()
+        public AddStudent()
         {
             InitializeComponent();
-        }
-
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
-            AddStudent addStudent = new AddStudent();
-            addStudent.ShowDialog();
         }
     }
 }
