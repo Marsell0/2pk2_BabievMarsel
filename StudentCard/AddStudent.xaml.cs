@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using StudentCardLibrary;
 
 namespace StudentCard
 {
@@ -22,6 +23,20 @@ namespace StudentCard
         public AddStudent()
         {
             InitializeComponent();
+        }
+
+        private void NewStudent(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string[] fio = FIO_tb.Text.Split(" ");
+                Student std = new Student(fio[0], fio[1], fio[2], Convert.ToDateTime(BDay_dp.Text), Group_tb.Text, DateTime.Now);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Close();
         }
     }
 }

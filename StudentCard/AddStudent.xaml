@@ -5,10 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentCard"
         mc:Ignorable="d"
-        Title="Добавить студента" Height="450" Width="800"
+        Title="Добавить студента" Height="300" Width="400"
         ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions ></Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="ФИО" Target="{Binding ElementName=FIO_tb}" Grid.Row="1" Grid.Column="0"></Label>
+        <TextBox x:Name="FIO_tb" Grid.Row="1" Grid.Column="1"></TextBox>
+
+        <Label Content="Дата рождения" Target="{Binding ElementName=BDay_dp}" Grid.Row="3" Grid.Column="0"></Label>
+        <DatePicker x:Name="BDay_dp" Grid.Row="3" Grid.Column="1"></DatePicker>
+        
+        <Label Content="Группа" Target="{Binding ElementName=Group_tb}" Grid.Row="5" Grid.Column="0"></Label>
+        <TextBox x:Name="Group_tb" Grid.Row="5" Grid.Column="1"></TextBox>
+
+        <Label Content="Поступление" Target="{Binding ElementName=RecDate_dp}" Grid.Row="7" Grid.Column="0"></Label>
+        <DatePicker x:Name="RecDate_dp" Grid.Row="7" Grid.Column="1"></DatePicker>
+
+        <Button Grid.Row="9" Grid.Column="1" Click="NewStudent">Добавить</Button>
     </Grid>
-    <TextBox></TextBox>
+    
 </Window>
