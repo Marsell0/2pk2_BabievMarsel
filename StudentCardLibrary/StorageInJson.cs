@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentCardLibrary
 {
-    internal class StorageInJson
+    public class StorageInJson
     {
         public ObservableCollection<Student> students;
         public string path;

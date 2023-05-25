@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace StudentCard
         public MainWindow()
         {
             InitializeComponent();
+            StorageInJson des = new StorageInJson("saves/stds.json");
+            stds = des.Deserialize();
             StudentsList.ItemsSource = stds;
         }
 
@@ -33,8 +36,26 @@ namespace StudentCard
         {
             AddStudent addStudent = new AddStudent();
             addStudent.ShowDialog();
-            addStudent.AddStd += (std) =>{stds.Add(std);};
+            addStudent.AddStd += (std) =>
+            {
+                stds.Add(std);
+            };
 
+            StorageInJson serialize = new StorageInJson(stds, "saves/stds.json");
+            serialize.Serialize();
+            StudentsList.Items.SortDescriptions.Add(new SortDescription("Content", ListSortDirection.Ascending));
+            StudentsList.Items.Refresh();
+        }
+        private void DelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                stds.RemoveAt(StudentsList.SelectedIndex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -22,7 +22,7 @@
         }
         public override string ToString()
         {
-            return new string($"{RegistryDate}\t{Surname} {Name} {Otchestvo}");
+            return new string($"{RegistryDate} {Surname} {Name} {Otchestvo}");
         }
     }
 }

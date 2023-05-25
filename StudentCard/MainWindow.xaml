@@ -13,11 +13,16 @@
             <RowDefinition Height="400" />
             <RowDefinition Height="70" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="0" Grid.Column="0"  FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center">Данные о студентах</TextBlock>
-        <ListBox x:Name="StudentsList" Grid.Row="1"></ListBox>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center">Данные о студентах</TextBlock>
+        <ListBox x:Name="StudentsList" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListBox>
 
-        <Button x:Name="AddBtn" Grid.Row="2" FontSize="20" Width="100" Height="80" Click="AddBtn_Click">Добавить</Button>
+        <Button x:Name="AddBtn" Grid.Row="2" FontSize="20" Width="100" Height="50" Click="AddBtn_Click">Добавить</Button>
+        <Button x:Name="DelBtn" Grid.Row="2" Grid.Column="1" FontSize="20" Width="100" Height="50" Click="DelBtn_Click">Удалить</Button>
     </Grid>
 </Window>
