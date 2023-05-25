@@ -1,5 +1,7 @@
-﻿using System;
+﻿using StudentCardLibrary;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +22,19 @@ namespace StudentCard
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Student> stds = new ObservableCollection<Student>();
         public MainWindow()
         {
             InitializeComponent();
+            StudentsList.ItemsSource = stds;
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
             AddStudent addStudent = new AddStudent();
             addStudent.ShowDialog();
+            addStudent.AddStd += (std) =>{stds.Add(std);};
+
         }
     }
 }

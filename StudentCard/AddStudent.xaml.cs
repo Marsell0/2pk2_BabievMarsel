@@ -20,6 +20,8 @@ namespace StudentCard
     /// </summary>
     public partial class AddStudent : Window
     {
+        public delegate void StudentEvent(Student std);
+        public event StudentEvent AddStd;
         public AddStudent()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace StudentCard
             {
                 string[] fio = FIO_tb.Text.Split(" ");
                 Student std = new Student(fio[0], fio[1], fio[2], Convert.ToDateTime(BDay_dp.Text), Group_tb.Text, DateTime.Now);
+                AddStd?.Invoke(std);
             }
             catch (Exception ex)
             {

@@ -16,8 +16,8 @@
 
 
         <TextBlock Grid.Row="0" Grid.Column="0"  FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center">Данные о студентах</TextBlock>
-        <ListBox x:Name="Students" Grid.Row="1"></ListBox>
+        <ListBox x:Name="StudentsList" Grid.Row="1"></ListBox>
 
-        <Button x:Name="AddBtn" Grid.Row="2" FontSize="30" Width="100" Height="80" Click="AddBtn_Click">Добавить</Button>
+        <Button x:Name="AddBtn" Grid.Row="2" FontSize="20" Width="100" Height="80" Click="AddBtn_Click">Добавить</Button>
     </Grid>
 </Window>
