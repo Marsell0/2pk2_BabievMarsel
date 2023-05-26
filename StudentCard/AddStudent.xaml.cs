@@ -31,6 +31,7 @@ namespace StudentCard
         {
             try
             {
+
                 string[] fio = FIO_tb.Text.Split(" ");
                 Student std = new(fio[0], fio[1], fio[2], Convert.ToDateTime(BDay_dp.Text), Group_tb.Text, DateTime.Now);
                 AddStd.Invoke(std);
